@@ -70,10 +70,8 @@ module "nxos_interface_ethernet" {
   source  = "netascode/interface-ethernet/nxos"
   version = ">= 0.1.0"
 
-  #for_each = { for leaf in local.leafs : leaf => leaf }
-  #device      = each.key
-  
-  device      = lookup(local.model.fabric.inventory, "leafs", null)
+  for_each = { for leaf in local.leafs : leaf => leaf }
+  device      = each.key
   id          = "1/2"
   mode        = "access"
   access_vlan = 1001
