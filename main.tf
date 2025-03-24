@@ -70,6 +70,9 @@ module "nxos_interface_ethernet" {
   source  = "netascode/interface-ethernet/nxos"
   version = ">= 0.1.0"
 
+#bygg om modulen så att den tar in en variabel som heter leafs och spines
+#ex leafs = local.leafs som de nxos underlay och overlay modulen
+
   for_each = { for leaf in local.leafs : leaf => leaf }
   device      = each.key
   id          = "1/2"
